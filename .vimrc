@@ -1,3 +1,4 @@
+" ln -sf `pwd`/.vimrc $HOME/
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
