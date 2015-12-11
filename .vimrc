@@ -51,7 +51,9 @@ filetype plugin indent on    " required
 " " Put your non-Plugin stuff after this line
 
 " 配色
-colorscheme obsidian
+set t_Co=256
+colorscheme darkburn
+"colorscheme obsidian
 
 "## 快捷键
 " ,bf 查看buffer并且输入数字即可跳转
@@ -64,6 +66,17 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 let g:EasyMotion_leader_key = ','
+nm<Space> i<space><Esc>l
+map ,ch :call SetColorColumn()<CR>
+function! SetColorColumn()
+    let col_num = virtcol(".")
+    let cc_list = split(&cc, ',')
+    if count(cc_list, string(col_num)) <= 0
+        execute "set cc+=".col_num
+    else
+        execute "set cc-=".col_num
+    endif
+endfunction
 
 "## 插件
 "filetype plugin indent on
@@ -92,6 +105,7 @@ set sw=4
 set ts=4
 set sts=4
 set et
+set cc=120
 " TODO
 set ci
 set viminfo='1000,<500,s100,h
